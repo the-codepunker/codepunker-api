@@ -14,7 +14,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->client = new \Codepunker\CodepunkerApi\Client();
         $key = getenv('api_key');
         if (!$key) {
-            $key = parse_ini_file(__DIR__ . '../src/Config/config.ini');
+            $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
+            $key = $keys['api_key'];
         }
         $params = [
             'base_uri'=>'https://www.codepunker.com/tools',
@@ -31,7 +32,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $key = getenv('api_key');
         if (!$key) {
-            $key = parse_ini_file(__DIR__ . '../src/Config/config.ini');
+            $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
+            $key = $keys['api_key'];
         }
         $params = [
             'base_uri'=>'https://www.codepunker.com/tools',
@@ -52,7 +54,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $key = getenv('api_key');
         if (!$key) {
-            $key = parse_ini_file(__DIR__ . '../src/Config/config.ini');
+            $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
+            $key = $keys['api_key'];
         }
         $response = $this->client->getToken();
         $this->assertEquals(true, $response);
@@ -66,7 +69,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $key = getenv('api_key');
         if (!$key) {
-            $key = parse_ini_file(__DIR__ . '../src/Config/config.ini');
+            $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
+            $key = $keys['api_key'];
         }
         $params = [
             'base_uri'=>'https://www.codepunker.com/tools',
