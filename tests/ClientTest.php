@@ -12,10 +12,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->client = new \Codepunker\CodepunkerApi\Client();
-
+        $key = getenv('api_key');
+        if (!$key) {
+            $key = parse_ini_file(__DIR__ . '../src/Config/config.ini');
+        }
         $params = [
             'base_uri'=>'https://www.codepunker.com/tools',
-            'api_key'=>'glh5i4s59vsnytiu5fswwv4nr73k10y4'
+            'api_key'=>$key
         ];
 
         $this->client->setParams($params);
@@ -26,9 +29,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testsetParams()
     {
+        $key = getenv('api_key');
+        if (!$key) {
+            $key = parse_ini_file(__DIR__ . '../src/Config/config.ini');
+        }
         $params = [
             'base_uri'=>'https://www.codepunker.com/tools',
-            'api_key'=>'glh5i4s59vsnytiu5fswwv4nr73k10y4',
+            'api_key'=>$key,
         ];
 
         $this->client->setParams($params);
@@ -43,6 +50,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testgetToken()
     {
+        $key = getenv('api_key');
+        if (!$key) {
+            $key = parse_ini_file(__DIR__ . '../src/Config/config.ini');
+        }
         $response = $this->client->getToken();
         $this->assertEquals(true, $response);
         $this->assertNotEmpty($this->client->token);
@@ -53,9 +64,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testServit()
     {
+        $key = getenv('api_key');
+        if (!$key) {
+            $key = parse_ini_file(__DIR__ . '../src/Config/config.ini');
+        }
         $params = [
             'base_uri'=>'https://www.codepunker.com/tools',
-            'api_key'=>'glh5i4s59vsnytiu5fswwv4nr73k10y4',
+            'api_key'=>$key,
             'assets'=>['https://news.ycombinator.com/news.css']
         ];
         $client = new \Codepunker\CodepunkerApi\ServIt;
