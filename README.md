@@ -5,6 +5,7 @@
 [![Build Status][ico-travis]][link-travis]
 
 A package that exploits the free web development tools API provided by [codepunker.com](https://www.codepunker.com/tools)
+Currently the ServIt API is the only one that is available through this package.
 
 ## Install
 
