@@ -11,7 +11,7 @@ A package that exploits the free web development tools API provided by [codepunk
 Via Composer
 
 ``` bash
-$ composer require Codepunker/codepunkerapi
+$ composer require codepunker/codepunkerapi
 ```
 
 ## Usage
