@@ -1,0 +1,50 @@
+{
+    "name": "Codepunker/CodepunkerApi",
+    "description": "A package that exploits the free web development tools API provided by (codepunker.com)[https://www.codepunker.com/tools]",
+    "keywords": [
+        "Codepunker",
+        "Servit",
+        "CDN",
+        "Uglify",
+        "Minify",
+        "static assets"
+    ],
+    "homepage": "https://github.com/the-codepunker/CodepunkerApi",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Gheorghe",
+            "email": "info@codepunker.com",
+            "homepage": "https://www.codepunker.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : ">=5.3.0",
+        "guzzlehttp/guzzle": "^6.1",
+        "fzaninotto/faker": "^1.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "4.*",
+        "scrutinizer/ocular": "~1.1",
+        "squizlabs/php_codesniffer": "~2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Codepunker\\CodepunkerApi\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Codepunker\\CodepunkerApi\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
