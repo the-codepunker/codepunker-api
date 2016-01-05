@@ -19,9 +19,12 @@ $ composer require Codepunker/CodepunkerApi
 ``` php
     <?php
     // Push your CSS/JS to the ServIt free CDN
+    $config = parse_ini_file(__DIR__ . '/path/to/src/Config/config.ini');
+    $key = $keys['api_key'];
+
     $params = [
         'base_uri'=>'https://www.codepunker.com/tools',
-        'api_key'=>'glh5i4s59vsnytiu5fswwv4nr73k10y4',
+        'api_key'=>$key,
         'assets'=>['https://news.ycombinator.com/news.css']
     ];
     $client = new \Codepunker\CodepunkerApi\ServIt;
@@ -55,9 +58,9 @@ If you discover any security related issues, please email info@codepunker.com in
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/:vendor/:package_name.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/the-codepunker/CodepunkerApi.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/:vendor/:package_name/master.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/the-codepunker/CodepunkerApi/master.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/:vendor/:package_name
 [link-travis]: https://travis-ci.org/the-codepunker/CodepunkerApi
