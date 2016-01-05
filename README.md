@@ -18,6 +18,13 @@ $ composer require codepunker/codepunkerapi
 
 ``` php
     <?php
+    /**
+     * This documentation shows how to use the 
+     * ServIt CDN service for CSS and JS.
+     * This is currently the only type of request
+     * available in this package. Will update this
+     * soon with all other tools.
+     */
     // Push your CSS/JS to the ServIt free CDN
     $config = parse_ini_file(__DIR__ . '/path/to/src/Config/config.ini');
     $key = $config['api_key'];
