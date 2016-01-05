@@ -66,9 +66,9 @@ If you discover any security related issues, please email info@codepunker.com in
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/the-codepunker/codepunker-api.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/codepunker/codepunkerapi.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/the-codepunker/codepunker-api/master.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/the-codepunker/codepunker-api
+[link-packagist]: https://packagist.org/packages/codepunker/codepunkerapi
 [link-travis]: https://travis-ci.org/the-codepunker/codepunker-api
