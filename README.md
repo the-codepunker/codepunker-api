@@ -1,26 +1,36 @@
-# Servit
+# CodepunkerApi
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
-[![Total Downloads][ico-downloads]][link-downloads]
 
-A package that exploits the free CDN provided on [codepunker.com](https://www.codepunker.com/tools/cdn) for developers that need a free CDN for their static assets (css and JS)
+A package that exploits the free web development tools API provided by [codepunker.com](https://www.codepunker.com/tools)
 
 ## Install
 
 Via Composer
 
 ``` bash
-$ composer require Codepunker/Servit
+$ composer require Codepunker/CodepunkerApi
 ```
 
 ## Usage
 
 ``` php
-    //will be updated
+    <?php
+    // Push your CSS/JS to the ServIt free CDN
+    $params = [
+        'base_uri'=>'https://www.codepunker.com/tools',
+        'api_key'=>'glh5i4s59vsnytiu5fswwv4nr73k10y4',
+        'assets'=>['https://news.ycombinator.com/news.css']
+    ];
+    $client = new \Codepunker\CodepunkerApi\ServIt;
+    $client->setParams($params);
+    $client->getToken();
+    $outcome = json_decode($client->pushToCDN());
+
+    $urls = $outcome->response; //this is a string
+    ?>
 ```
 
 ## Change log
@@ -48,14 +58,6 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-version]: https://img.shields.io/packagist/v/:vendor/:package_name.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/:vendor/:package_name/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/:vendor/:package_name.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/:vendor/:package_name.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/:vendor/:package_name.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/:vendor/:package_name
-[link-travis]: https://travis-ci.org/:vendor/:package_name
-[link-scrutinizer]: https://scrutinizer-ci.com/g/:vendor/:package_name/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/:vendor/:package_name
-[link-downloads]: https://packagist.org/packages/:vendor/:package_name
-[link-author]: https://github.com/:author_username
-[link-contributors]: ../../contributors
+[link-travis]: https://travis-ci.org/the-codepunker/CodepunkerApi
