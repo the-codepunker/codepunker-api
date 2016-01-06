@@ -4,26 +4,30 @@ namespace Codepunker\CodepunkerApi;
 
 use GuzzleHttp\Client as Guzzle;
 
-class ServIt extends \Codepunker\CodepunkerApi\Client
+class Uglify extends \Codepunker\CodepunkerApi\Client
 {
     /**
-     * @var array an array of asset URLs to be pushed to the cdn
+     * @var array an array of asset URLs to be uglified
      */
     public $assets = [];
+    public $language = "JavaScript";
+    public $pushtocdn = "false";
 
     /**
      * Queries the CodepunkerApi asking to push files from the requested
      * URLs to the servIt CDN
      * @return string a json with the API response
      */
-    public function pushToCDN()
+    public function uglify()
     {
         $client = new Guzzle();
         $response = $client->request('POST', $this->base_uri, [
             'form_params' => [
-                'execute'=>'executeCDN',
+                'execute'=>'executeUglify',
+                'language'=>$this->language,
+                'urlcode'=>$this->assets,
+                'pushtocdn'=>$this->pushtocdn,
                 'token'=>$this->token,
-                'urlcode'=>$this->assets
             ]
         ]);
 

@@ -5,7 +5,7 @@
 [![Build Status][ico-travis]][link-travis]
 
 A package that exploits the free web development tools API provided by [codepunker.com](https://www.codepunker.com/tools)
-Currently the ServIt API is the only one that is available through this package.
+Currently the ServIt and the Uglify API are the only ones that are available through this package.
 
 ## Install
 
@@ -19,28 +19,40 @@ $ composer require codepunker/codepunkerapi
 
 ``` php
     <?php
-    /**
-     * This documentation shows how to use the 
-     * ServIt CDN service for CSS and JS.
-     * This is currently the only type of request
-     * available in this package. Will update this
-     * soon with all other tools.
-     */
-    // Push your CSS/JS to the ServIt free CDN
-    $config = parse_ini_file(__DIR__ . '/path/to/src/Config/config.ini');
-    $key = $config['api_key'];
+    //1. How to push your CSS/JS to the ServIt free CDN
+        $config = parse_ini_file(__DIR__ . '/path/to/src/Config/config.ini');
+        $key = $config['api_key'];
 
-    $params = [
-        'base_uri'=>'https://www.codepunker.com/tools',
-        'api_key'=>$key,
-        'assets'=>['https://news.ycombinator.com/news.css']
-    ];
-    $client = new \Codepunker\CodepunkerApi\ServIt;
-    $client->setParams($params);
-    $client->getToken();
-    $outcome = json_decode($client->pushToCDN());
+        $params = [
+            'base_uri'=>'https://www.codepunker.com/tools',
+            'api_key'=>$key,
+            'assets'=>['https://news.ycombinator.com/news.css']
+        ];
+        $client = new \Codepunker\CodepunkerApi\ServIt;
+        $client->setParams($params);
+        $client->getToken();
+        $outcome = json_decode($client->pushToCDN());
 
-    $urls = $outcome->response; //this is a string
+        $urls = $outcome->response; //this is a string
+
+    //2. How to compile/minify CSS/JS/LESS/SASS code optionally pushing it to the
+    //ServIt free CDN
+        $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
+        $key = $keys['api_key'];
+        $params = [
+            'base_uri'=>'https://www.codepunker.com/tools',
+            'api_key'=>$key,
+            'assets'=>[
+                'https://www.codepunker.com/url_to_some_js_or_css_or_less_or_sass_file',
+                'https://www.codepunker.com/url_to_another_js_or_css_or_less_or_sass_file'
+            ],
+            'language'=>'JavaScript', //language of the above files. valid values: 'JavaScript' or 'CSS' or 'LESS' or 'SASS'
+            'pushtocdn'=>'true', //string 'true' or 'false'
+        ];
+        $client = new \Codepunker\CodepunkerApi\Uglify;
+        $client->setParams($params);
+        $client->getToken();
+        $outcome = $client->uglify(); //this is a string
     ?>
 ```
 
