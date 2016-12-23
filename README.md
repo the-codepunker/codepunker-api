@@ -69,6 +69,7 @@ $ composer test
 ## Security
 
 If you discover any security related issues, please email info@codepunker.com instead of using the issue tracker.
+TEST
 
 ## Credits
 
