@@ -63,29 +63,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * testServit
-     */
-    public function testServit()
-    {
-        $key = getenv('api_key');
-        if (!$key) {
-            $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
-            $key = $keys['api_key'];
-        }
-        $params = [
-            'base_uri'=>'https://www.codepunker.com/tools',
-            'api_key'=>$key,
-            'assets'=>['https://news.ycombinator.com/news.css']
-        ];
-        $client = new \Codepunker\CodepunkerApi\ServIt;
-        $client->setParams($params);
-        $client->getToken();
-        $outcome = $client->pushToCDN();
-
-        $this->assertEquals($outcome->type, $client::SUCCESS_MESSAGE);
-    }
-
-    /**
      * testuglify
      */
     public function testUglify()
@@ -99,8 +76,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             'base_uri'=>'https://www.codepunker.com/tools',
             'api_key'=>$key,
             'assets'=>['https://www.codepunker.com/src/tools.js'],
-            'language'=>'JavaScript',
-            'pushtocdn'=>'true',
+            'language'=>'JavaScript'
         ];
         $client = new \Codepunker\CodepunkerApi\Uglify;
         $client->setParams($params);
