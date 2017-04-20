@@ -11,7 +11,6 @@ class Uglify extends \Codepunker\CodepunkerApi\Client
      */
     public $assets = [];
     public $language = "JavaScript";
-    public $pushtocdn = "false";
 
     /**
      * Queries the CodepunkerApi asking to push files from the requested
@@ -26,7 +25,6 @@ class Uglify extends \Codepunker\CodepunkerApi\Client
                 'execute'=>'executeUglify',
                 'language'=>$this->language,
                 'urlcode'=>$this->assets,
-                'pushtocdn'=>$this->pushtocdn,
                 'token'=>$this->token,
             ]
         ]);
