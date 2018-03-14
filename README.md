@@ -19,28 +19,42 @@ $ composer require codepunker/codepunkerapi
 
 ``` php
     <?php
-    //1. How to compile/minify CSS/JS/LESS/SASS code optionally 
-        $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
-        $key = $keys['api_key'];
+    //1. Generate Sitemaps
+        $key = getenv('codepunker_api_key'); //set it as an env var or in the config file
+        if (!$key) {
+            $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
+            $key = $keys['codepunker_api_key'];
+        }
         $params = [
-            'base_uri'=>'https://www.codepunker.com/tools',
             'api_key'=>$key,
-            'assets'=>[
-                'https://www.codepunker.com/url_to_some_js_or_css_or_less_or_sass_file',
-                'https://www.codepunker.com/url_to_another_js_or_css_or_less_or_sass_file'
-            ],
-            'language'=>'JavaScript', //language of the above files. valid values: 'JavaScript' or 'CSS' or 'LESS' or 'SASS'
+            'domain'=>'the url of the domain you want the sitemap generated for',
+            'callbackuri'=>'the url you want to receive a notification on when the sitemap is ready for downloading',
         ];
-        $client = new \Codepunker\CodepunkerApi\Uglify;
+        $client = new \Codepunker\CodepunkerApi\SitemapGen;
         $client->setParams($params);
         $client->getToken();
-        $outcome = $client->uglify(); //this is a string
+        $outcome = $client->run();
+
+    //2. Encode/Decode/Hash/Unhash strings
+        $key = getenv('codepunker_api_key');
+        if (!$key) {
+            $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
+            $key = $keys['codepunker_api_key'];
+        }
+        $methods = ["encode"=>"a& b=", "decode"=>"cXdlMTIzNCAm", "hash"=>"qwe1234", "unhash"=>"020a66797188c675989262ffff701e11"];
+        foreach ($methods as $method=>$string) {
+            $params = [
+                'api_key'=>$key,
+                'method'=>$method,
+                'string'=>$string,
+            ];
+            $client = new \Codepunker\CodepunkerApi\StringConverter;
+            $client->setParams($params);
+            $client->getToken();
+            $outcome = $client->run();
+        }
     ?>
 ```
-
-## Change log
-
-We'll see...
 
 ## Testing
 
@@ -51,7 +65,6 @@ $ composer test
 ## Security
 
 If you discover any security related issues, please email info@codepunker.com instead of using the issue tracker.
-TEST
 
 ## Credits
 
