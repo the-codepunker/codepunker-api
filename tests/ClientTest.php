@@ -92,8 +92,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
             $key = $keys['codepunker_api_key'];
         }
-        $methods = ["encode"=>"a& b=", "decode"=>"cXdlMTIzNCAm", "hash"=>"qwe1234", "unhash"=>"020a66797188c675989262ffff701e11"];
-        foreach ($methods as $method=>$string) {
+        $methods = [
+            "encode"=>"a& b=",
+            "decode"=>"cXdlMTIzNCAm",
+            "hash"=>"qwe1234",
+            "unhash"=>"020a66797188c675989262ffff701e11"
+        ];
+        foreach ($methods as $method => $string) {
             $params = [
                 'api_key'=>$key,
                 'method'=>$method,

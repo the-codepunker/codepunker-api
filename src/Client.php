@@ -51,7 +51,7 @@ class Client
 
         foreach ($params as $key => $value) {
             if (!property_exists($this, $key)) {
-                throw new Exceptions\CodepunkerExceptions("The property {$key} is not available in the API definition - 2");
+                throw new Exceptions\CodepunkerExceptions("The property {$key} is not available in the API definition");
             } else {
                 $this->{$key} = $value;
             }

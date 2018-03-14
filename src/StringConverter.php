@@ -15,7 +15,7 @@ class StringConverter extends \Codepunker\CodepunkerApi\Client
 
     /**
      * Queries the CodepunkerApi asking to generate a sitemap
-     * for a specified URL/Website ... 
+     * for a specified URL/Website ...
      * A callback URL is required for when the sitemap is ready for download
      * @return string a json with the API response
      */
