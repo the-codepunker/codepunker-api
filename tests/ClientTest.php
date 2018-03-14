@@ -12,10 +12,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->client = new \Codepunker\CodepunkerApi\Client();
-        $key = getenv('api_key');
+        $key = getenv('codepunker_api_key');
         if (!$key) {
             $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
-            $key = $keys['api_key'];
+            $key = $keys['codepunker_api_key'];
         }
         $params = [
             'api_key'=>$key
@@ -29,10 +29,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testsetParams()
     {
-        $key = getenv('api_key');
+        $key = getenv('codepunker_api_key');
         if (!$key) {
             $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
-            $key = $keys['api_key'];
+            $key = $keys['codepunker_api_key'];
         }
         $params = [
             'api_key'=>$key,
@@ -49,10 +49,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testgetToken()
     {
-        $key = getenv('api_key');
+        $key = getenv('codepunker_api_key');
         if (!$key) {
             $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
-            $key = $keys['api_key'];
+            $key = $keys['codepunker_api_key'];
         }
         $response = $this->client->getToken();
         $this->assertEquals(true, $response);
@@ -64,10 +64,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testSitemapGen()
     {
-        $key = getenv('api_key');
+        $key = getenv('codepunker_api_key');
         if (!$key) {
             $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
-            $key = $keys['api_key'];
+            $key = $keys['codepunker_api_key'];
         }
         $params = [
             'api_key'=>$key,
@@ -87,10 +87,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testStringConverter()
     {
-        $key = getenv('api_key');
+        $key = getenv('codepunker_api_key');
         if (!$key) {
             $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
-            $key = $keys['api_key'];
+            $key = $keys['codepunker_api_key'];
         }
         $methods = ["encode"=>"a& b=", "decode"=>"cXdlMTIzNCAm", "hash"=>"qwe1234", "unhash"=>"020a66797188c675989262ffff701e11"];
         foreach ($methods as $method=>$string) {
