@@ -18,7 +18,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             $key = $keys['api_key'];
         }
         $params = [
-            'base_uri'=>'https://www.codepunker.com/tools',
             'api_key'=>$key
         ];
 
@@ -36,13 +35,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             $key = $keys['api_key'];
         }
         $params = [
-            'base_uri'=>'https://www.codepunker.com/tools',
             'api_key'=>$key,
         ];
 
         $this->client->setParams($params);
 
-        $this->assertEquals($params['base_uri'], $this->client->base_uri);
         $this->assertEquals($params['api_key'], $this->client->api_key);
     }
 
@@ -63,9 +60,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * testuglify
+     * testsitemapgen
      */
-    public function testUglify()
+    public function testSitemapGen()
     {
         $key = getenv('api_key');
         if (!$key) {
@@ -73,16 +70,40 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             $key = $keys['api_key'];
         }
         $params = [
-            'base_uri'=>'https://www.codepunker.com/tools',
             'api_key'=>$key,
-            'assets'=>['https://www.codepunker.com/src/tools.js'],
-            'language'=>'JavaScript'
+            'domain'=>'https://hosting.codepunker.com',
+            'callbackuri'=>'https://hookb.in/Z6OOR3Pg',
         ];
-        $client = new \Codepunker\CodepunkerApi\Uglify;
+        $client = new \Codepunker\CodepunkerApi\SitemapGen;
         $client->setParams($params);
         $client->getToken();
-        $outcome = $client->uglify();
+        $outcome = $client->run();
 
         $this->assertEquals($outcome->type, $client::SUCCESS_MESSAGE);
+    }
+
+    /**
+     * testStringConverter
+     */
+    public function testStringConverter()
+    {
+        $key = getenv('api_key');
+        if (!$key) {
+            $keys = parse_ini_file(__DIR__ . '/../src/Config/config.ini');
+            $key = $keys['api_key'];
+        }
+        $methods = ["encode"=>"a& b=", "decode"=>"cXdlMTIzNCAm", "hash"=>"qwe1234", "unhash"=>"020a66797188c675989262ffff701e11"];
+        foreach ($methods as $method=>$string) {
+            $params = [
+                'api_key'=>$key,
+                'method'=>$method,
+                'string'=>$string,
+            ];
+            $client = new \Codepunker\CodepunkerApi\StringConverter;
+            $client->setParams($params);
+            $client->getToken();
+            $outcome = $client->run();
+            $this->assertEquals($outcome->type, $client::SUCCESS_MESSAGE);
+        }
     }
 }
