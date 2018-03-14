@@ -15,7 +15,7 @@ class Client
     /**
      * @var  string [The URL where requests should be sent @codepunker.com]
      */
-    public $base_uri;
+    public $base_uri = "https://www.codepunker.com/tools";
 
     /**
      * @var  token [The current API Token]
@@ -44,15 +44,14 @@ class Client
      */
     public function setParams(array $params)
     {
-        $msg = "Params array must at least have 'base_uri' & 'api_key'";
         //params must at least have base_uri and api_key
-        if (!is_array($params) || empty($params)>=2) {
-            throw new Exceptions\CodepunkerExceptions($msg . " - 1");
+        if (empty($params) || !is_array($params) || $params<2) {
+            throw new Exceptions\CodepunkerExceptions("Params array must at least have the 'api_key' - 1");
         }
 
         foreach ($params as $key => $value) {
             if (!property_exists($this, $key)) {
-                throw new Exceptions\CodepunkerExceptions($msg . " - 2");
+                throw new Exceptions\CodepunkerExceptions("The property {$key} is not available in the API definition - 2");
             } else {
                 $this->{$key} = $value;
             }
